@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TestGoogleBooks</string>
+    
+    <!--Main Activity-->
+    <string name="text_search_book">Search for a Book</string>
+    <string name="text_button_search">Search</string>
+    
+</resources>
