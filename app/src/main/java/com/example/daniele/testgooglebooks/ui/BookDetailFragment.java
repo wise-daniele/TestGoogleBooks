@@ -15,6 +15,8 @@ import com.example.daniele.testgooglebooks.R;
 
 public class BookDetailFragment extends Fragment {
 
+    public static final String FRAGMENT_TAG = "fragment_book_detail";
+
     public static BookDetailFragment newInstance() {
         BookDetailFragment fragment = new BookDetailFragment();
         return fragment;

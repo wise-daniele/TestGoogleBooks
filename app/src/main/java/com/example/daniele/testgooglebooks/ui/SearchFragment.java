@@ -15,6 +15,8 @@ import com.example.daniele.testgooglebooks.R;
 
 public class SearchFragment extends Fragment {
 
+    public static final String FRAGMENT_TAG = "fragment_search";
+
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
         return fragment;
