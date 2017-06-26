@@ -1,4 +1,4 @@
-package com.example.daniele.testgooglebooks;
+package com.example.daniele.testgooglebooks.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.daniele.testgooglebooks.R;
 
 /**
  * Created by daniele on 25/06/17.
