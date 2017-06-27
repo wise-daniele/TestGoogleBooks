@@ -20,11 +20,46 @@ public class Volume {
     private VolumeInfo volumeInfo;
     @SerializedName("layerInfo")
     private LayerInfo layerInfo;
-
     @SerializedName("saleInfo")
     private VolumeInfo saleInfo;
     @SerializedName("accessInfo")
     private AccessInfo accessInfo;
     @SerializedName("searchInfo")
     private SearchInfo searchInfo;
+
+    public String getKind() {
+        return kind;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getEtag() {
+        return etag;
+    }
+
+    public String getSelfLink() {
+        return selfLink;
+    }
+
+    public VolumeInfo getVolumeInfo() {
+        return volumeInfo;
+    }
+
+    public LayerInfo getLayerInfo() {
+        return layerInfo;
+    }
+
+    public VolumeInfo getSaleInfo() {
+        return saleInfo;
+    }
+
+    public AccessInfo getAccessInfo() {
+        return accessInfo;
+    }
+
+    public SearchInfo getSearchInfo() {
+        return searchInfo;
+    }
 }

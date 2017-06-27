@@ -16,4 +16,16 @@ public class VolumesResponse {
     private int totalItems;
     @SerializedName("items")
     private List<Volume> items;
+
+    public String getKind() {
+        return kind;
+    }
+
+    public int getTotalItems() {
+        return totalItems;
+    }
+
+    public List<Volume> getItems() {
+        return items;
+    }
 }

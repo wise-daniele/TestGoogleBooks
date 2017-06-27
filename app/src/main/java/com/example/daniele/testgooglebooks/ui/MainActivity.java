@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.Fr
     }
 
     @Override
-    public void onSearchTapped(String query) {
-        mMainController.onSearchTapped(query);
+    public void onSearchTapped(String title, String author, String subject, String publisher, String isbn) {
+        mMainController.getSearchQuery(title, author, subject, publisher, isbn);
     }
 }

@@ -27,7 +27,7 @@ public class VolumeInfo {
     @SerializedName("ratingsCount")
     private int ratingsCount;
     @SerializedName("industryIdentifiers")
-    private IndustryIdentifiers industryIdentifiers;
+    private IndustryIdentifiers[] industryIdentifiers;
     @SerializedName("pageCount")
     private int pageCount;
     @SerializedName("printedPageCount")
@@ -38,7 +38,6 @@ public class VolumeInfo {
     private boolean allowAnonLogging;
     @SerializedName("contentVersion")
     private String contentVersion;
-
     @SerializedName("printType")
     private String printType;
     @SerializedName("categories")
@@ -91,5 +90,93 @@ public class VolumeInfo {
         private String large;
         @SerializedName("extraLarge")
         private String extraLarge;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String[] getAuthors() {
+        return authors;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ReadingModes getReadingModes() {
+        return readingModes;
+    }
+
+    public Dimensions getDimensions() {
+        return dimensions;
+    }
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public int getRatingsCount() {
+        return ratingsCount;
+    }
+
+    public IndustryIdentifiers[] getIndustryIdentifiers() {
+        return industryIdentifiers;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public int getPrintedPageCount() {
+        return printedPageCount;
+    }
+
+    public String getMaturityRating() {
+        return maturityRating;
+    }
+
+    public boolean isAllowAnonLogging() {
+        return allowAnonLogging;
+    }
+
+    public String getContentVersion() {
+        return contentVersion;
+    }
+
+    public String getPrintType() {
+        return printType;
+    }
+
+    public String[] getCategories() {
+        return categories;
+    }
+
+    public ImageLinks getImageLinks() {
+        return imageLinks;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public String getPreviewLink() {
+        return previewLink;
+    }
+
+    public String getInfoLink() {
+        return infoLink;
+    }
+
+    public String getCanonicalVolumeLink() {
+        return canonicalVolumeLink;
     }
 }

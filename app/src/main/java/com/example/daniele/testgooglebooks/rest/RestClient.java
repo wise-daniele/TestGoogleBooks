@@ -47,7 +47,7 @@ public class RestClient {
         Call<Volume> getVolumeById(@Path("volumeId") String volumeId);
 
         @GET("volumes")
-        Call<VolumesResponse> searchVolumes(
+        Call<VolumesResponse> getVolumes(
                 @Query("q") String query
         );
 

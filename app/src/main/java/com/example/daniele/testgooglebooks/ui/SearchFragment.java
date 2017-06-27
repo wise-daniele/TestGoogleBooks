@@ -4,12 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.daniele.testgooglebooks.R;
+import com.example.daniele.testgooglebooks.controller.MainController;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +43,7 @@ public class SearchFragment extends Fragment {
     @BindView(R.id.edit_text_isbn)
     TextView mTextIsbn;
     @BindView(R.id.button_search)
-    TextView mButtonSearch;
+    Button mButtonSearch;
     private Unbinder mUnbinder;
 
     @Nullable
@@ -52,8 +55,13 @@ public class SearchFragment extends Fragment {
         mButtonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: check id data is ok and get query
-                mListener.onSearchTapped("");
+                mListener.onSearchTapped(
+                        mTextTitle.getText().toString(),
+                        mTextAuthor.getText().toString(),
+                        mTextSubject.getText().toString(),
+                        mTextPublisher.getText().toString(),
+                        mTextIsbn.getText().toString()
+                );
             }
         });
         return rootView;
@@ -84,6 +92,12 @@ public class SearchFragment extends Fragment {
 
     public interface FragmentListener{
 
-        void onSearchTapped(String query);
+        void onSearchTapped(
+                String title,
+                String author,
+                String subject,
+                String publisher,
+                String isbn
+        );
     }
 }
