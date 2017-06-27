@@ -1,5 +1,6 @@
 package com.example.daniele.testgooglebooks.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,8 +39,9 @@ public class BooksListFragment extends Fragment {
     private List<Volume> mVolumesList;
     private VolumesAdapter mVolumesAdapter;
     private LinearLayoutManager mLayoutManager;
-
+    private VolumesAdapter.OnItemClickListener mItemListener;
     private Unbinder mUnbinder;
+    private VolumeListener mListener;
 
     @Nullable
     @Override
@@ -48,8 +50,16 @@ public class BooksListFragment extends Fragment {
         mUnbinder = ButterKnife.bind(this, rootView);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mVolumesView.setLayoutManager(mLayoutManager);
-        mVolumesAdapter = new VolumesAdapter(getActivity(), mVolumesList);
+        mItemListener = new VolumesAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(String itemId) {
+                mListener.onItemSelected(itemId);
+            }
+        };
+        mVolumesAdapter = new VolumesAdapter(getActivity(), mVolumesList, mItemListener);
         mVolumesView.setAdapter(mVolumesAdapter);
+
         return rootView;
     }
 
@@ -61,5 +71,27 @@ public class BooksListFragment extends Fragment {
 
     public void setVolumes(ArrayList<Volume> volumes){
         mVolumesList = volumes;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (VolumeListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement VolumeListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface VolumeListener {
+
+        public void onItemSelected(String volumeId);
     }
 }

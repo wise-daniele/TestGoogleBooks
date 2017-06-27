@@ -9,6 +9,7 @@ import com.example.daniele.testgooglebooks.R;
 import com.example.daniele.testgooglebooks.model.Volume;
 import com.example.daniele.testgooglebooks.model.VolumesResponse;
 import com.example.daniele.testgooglebooks.rest.RestClient;
+import com.example.daniele.testgooglebooks.ui.BookDetailFragment;
 import com.example.daniele.testgooglebooks.ui.BooksListFragment;
 import com.example.daniele.testgooglebooks.ui.MainActivity;
 import com.example.daniele.testgooglebooks.ui.SearchFragment;
@@ -32,6 +33,7 @@ public class MainController {
     private MainActivity mActivity;
     private SearchFragment mSearchFragment;
     private BooksListFragment mBooksListFragment;
+    private BookDetailFragment mBookDetailFragment;
 
     public MainController(MainActivity activity){
         mActivity = activity;
@@ -49,14 +51,25 @@ public class MainController {
     }
 
     /**
-     * Replace the main fragment with the search fragment
+     * Replace the main fragment with the books list fragment
      */
     public void showBooksListFragment(ArrayList<Volume> volumes){
         if(mBooksListFragment == null){
             mBooksListFragment = BooksListFragment.newInstance();
         }
         mBooksListFragment.setVolumes(volumes);
-        replaceFragment(R.id.main_fragment_container, mBooksListFragment, SearchFragment.FRAGMENT_TAG, true);
+        replaceFragment(R.id.main_fragment_container, mBooksListFragment, BooksListFragment.FRAGMENT_TAG, true);
+    }
+
+    /**
+     * Replace the main fragment with the book detail fragment
+     */
+    public void showBookDetailFragment(Volume volume){
+        if(mBookDetailFragment == null){
+            mBookDetailFragment = BookDetailFragment.newInstance();
+        }
+        mBookDetailFragment.setVolume(volume);
+        replaceFragment(R.id.main_fragment_container, mBooksListFragment, BookDetailFragment.FRAGMENT_TAG, true);
     }
 
     /**
@@ -67,7 +80,7 @@ public class MainController {
      * @param addToBackStack true if the we want to maintain the current fragment in the stack
      * @return
      */
-    private int replaceFragment(int containerId, Fragment fragment, String tag, boolean addToBackStack) {
+    private int replaceFragment(int containerId, Fragment fragment, String tag, boolean addToBackStack){
         FragmentTransaction fragmentTransaction = mActivity.getSupportFragmentManager()
                 .beginTransaction()
                 .replace(containerId, fragment, tag);
@@ -78,7 +91,44 @@ public class MainController {
         return fragmentTransaction.commit();
     }
 
-    public void getSearchQuery(String title, String author, String publisher, String subject, String isbn){
+    public void onSearchTapped(String title, String author, String publisher, String subject, String isbn){
+        String searchQuery = getSearchQuery(title, author, publisher, subject, isbn);
+        RestClient.GoogleBooksInterface service = RestClient.getInstance().getClient().create(RestClient.GoogleBooksInterface.class);
+        Call<VolumesResponse> call = service.getVolumes(searchQuery.toString());
+        call.enqueue(new Callback<VolumesResponse>() {
+            @Override
+            public void onResponse(Call<VolumesResponse> call, Response<VolumesResponse> response) {
+                ArrayList<Volume> volumes = (ArrayList<Volume>) response.body().getItems();
+                showBooksListFragment(volumes);
+            }
+
+            @Override
+            public void onFailure(Call<VolumesResponse> call, Throwable t) {
+                Log.d(LOG_TAG, "Call onFailure " + t.getMessage());
+            }
+
+        });
+    }
+
+    public void onListItemTapped(String itemId){
+        RestClient.GoogleBooksInterface service = RestClient.getInstance().getClient().create(RestClient.GoogleBooksInterface.class);
+        Call<Volume> call = service.getVolumeById(itemId);
+        call.enqueue(new Callback<Volume>() {
+            @Override
+            public void onResponse(Call<Volume> call, Response<Volume> response) {
+                //TODO: open detail fragment
+                showBookDetailFragment(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Volume> call, Throwable t) {
+                Log.d(LOG_TAG, "Call onFailure " + t.getMessage());
+            }
+
+        });
+    }
+
+    private String getSearchQuery(String title, String author, String publisher, String subject, String isbn){
         StringBuilder searchQuery = new StringBuilder();
         boolean firstAdded = false;
         if(!TextUtils.isEmpty(title)){
@@ -121,25 +171,7 @@ public class MainController {
             searchQuery.append(query);
             firstAdded = true;
         }
-        onSearchTapped(searchQuery.toString());
-    }
-
-    public void onSearchTapped(String query){
-        RestClient.GoogleBooksInterface service = RestClient.getInstance().getClient().create(RestClient.GoogleBooksInterface.class);
-        Call<VolumesResponse> call = service.getVolumes(query);
-        call.enqueue(new Callback<VolumesResponse>() {
-            @Override
-            public void onResponse(Call<VolumesResponse> call, Response<VolumesResponse> response) {
-                ArrayList<Volume> volumes = (ArrayList<Volume>) response.body().getItems();
-                showBooksListFragment(volumes);
-            }
-
-            @Override
-            public void onFailure(Call<VolumesResponse> call, Throwable t) {
-                Log.d(LOG_TAG, "Call onFailure " + t.getMessage());
-            }
-
-        });
+        return searchQuery.toString();
     }
 
 }

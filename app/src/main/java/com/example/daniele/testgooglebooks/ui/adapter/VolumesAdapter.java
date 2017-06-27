@@ -41,10 +41,12 @@ public class VolumesAdapter extends RecyclerView.Adapter<VolumesAdapter.VolumeVi
 
     private Context mContext;
     private List<Volume> mList;
+    private final OnItemClickListener mListener;
 
-    public VolumesAdapter(Context context, List<Volume> list) {
+    public VolumesAdapter(Context context, List<Volume> list, OnItemClickListener listener) {
         mContext = context;
         mList = list;
+        mListener = listener;
     }
 
     @Override
@@ -75,5 +77,9 @@ public class VolumesAdapter extends RecyclerView.Adapter<VolumesAdapter.VolumeVi
     @Override
     public int getItemCount() {
         return mList.size();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(String itemId);
     }
 }

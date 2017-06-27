@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.daniele.testgooglebooks.R;
+import com.example.daniele.testgooglebooks.model.Volume;
 
 /**
  * Created by daniele on 25/06/17.
@@ -22,10 +23,16 @@ public class BookDetailFragment extends Fragment {
         return fragment;
     }
 
+    private Volume mVolume;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_book_detail, container, false);
         return rootView;
+    }
+
+    public void setVolume(Volume volume){
+        mVolume = volume;
     }
 }
