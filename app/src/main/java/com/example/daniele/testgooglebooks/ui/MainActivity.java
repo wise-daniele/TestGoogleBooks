@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements SearchFragment.Fr
             if (savedInstanceState != null) {
                 return;
             }
-            mMainController.showSearchFragment();
+            mMainController.showSearchFragment(false);
         }
     }
 

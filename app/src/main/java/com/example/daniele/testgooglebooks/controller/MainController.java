@@ -43,11 +43,11 @@ public class MainController {
     /**
      * Replace the main fragment with the search fragment
      */
-    public void showSearchFragment(){
+    public void showSearchFragment(boolean addToBackStack){
         if(mSearchFragment == null){
             mSearchFragment = SearchFragment.newInstance();
         }
-        replaceFragment(R.id.main_fragment_container, mSearchFragment, SearchFragment.FRAGMENT_TAG, true);
+        replaceFragment(R.id.main_fragment_container, mSearchFragment, SearchFragment.FRAGMENT_TAG, addToBackStack);
     }
 
     /**
@@ -69,7 +69,7 @@ public class MainController {
             mBookDetailFragment = BookDetailFragment.newInstance();
         }
         mBookDetailFragment.setVolume(volume);
-        replaceFragment(R.id.main_fragment_container, mBooksListFragment, BookDetailFragment.FRAGMENT_TAG, true);
+        replaceFragment(R.id.main_fragment_container, mBookDetailFragment, BookDetailFragment.FRAGMENT_TAG, true);
     }
 
     /**
@@ -98,6 +98,7 @@ public class MainController {
         call.enqueue(new Callback<VolumesResponse>() {
             @Override
             public void onResponse(Call<VolumesResponse> call, Response<VolumesResponse> response) {
+                Log.d(LOG_TAG, "Call onResponse " + call.request().toString());
                 ArrayList<Volume> volumes = (ArrayList<Volume>) response.body().getItems();
                 showBooksListFragment(volumes);
             }
@@ -116,7 +117,7 @@ public class MainController {
         call.enqueue(new Callback<Volume>() {
             @Override
             public void onResponse(Call<Volume> call, Response<Volume> response) {
-                //TODO: open detail fragment
+                Log.d(LOG_TAG, "Call onResponse " + response.message());
                 showBookDetailFragment(response.body());
             }
 

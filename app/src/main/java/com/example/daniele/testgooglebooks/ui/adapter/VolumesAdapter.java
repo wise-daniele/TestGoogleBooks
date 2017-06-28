@@ -60,7 +60,7 @@ public class VolumesAdapter extends RecyclerView.Adapter<VolumesAdapter.VolumeVi
     public void onBindViewHolder(VolumeViewHolder holder, int position) {
         final Volume volume = mList.get(position);
         if(volume != null) {
-            VolumeInfo volumeInfo = volume.getVolumeInfo();
+            final VolumeInfo volumeInfo = volume.getVolumeInfo();
             String title = volumeInfo.getTitle();
             String[] authors = volumeInfo.getAuthors();
             String textAuthor = "";
@@ -71,12 +71,22 @@ public class VolumesAdapter extends RecyclerView.Adapter<VolumesAdapter.VolumeVi
             holder.mBookTitle.setText(title);
             holder.mBookAuthor.setText(textAuthor);
             holder.mBookPublisher.setText(publisher);
+
+            holder.myView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onItemClick(volume.getId());
+                }
+            });
         }
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        if(mList != null){
+            return mList.size();
+        }
+        return 0;
     }
 
     public interface OnItemClickListener {

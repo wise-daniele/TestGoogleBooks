@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import butterknife.Unbinder;
 public class BooksListFragment extends Fragment {
 
     public static final String FRAGMENT_TAG = "fragment_books_list";
+    public static final String LOG_TAG = BooksListFragment.class.getSimpleName();
 
     public static BooksListFragment newInstance() {
         BooksListFragment fragment = new BooksListFragment();
@@ -54,6 +56,7 @@ public class BooksListFragment extends Fragment {
 
             @Override
             public void onItemClick(String itemId) {
+                Log.d(LOG_TAG, "On Item Click " + itemId);
                 mListener.onItemSelected(itemId);
             }
         };

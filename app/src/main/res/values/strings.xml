@@ -2,7 +2,14 @@
     <string name="app_name">TestGoogleBooks</string>
     
     <!--Main Activity-->
-    <string name="text_search_book">Search for a Book</string>
+    <string name="text_search_book">Search for books</string>
     <string name="text_button_search">Search</string>
+
+    <!-- Search Fragment -->
+    <string name="text_title">Title</string>
+    <string name="text_author">Author</string>
+    <string name="text_publisher">Publisher</string>
+    <string name="text_subject">Subject</string>
+    <string name="text_isbn">ISBN</string>
     
 </resources>

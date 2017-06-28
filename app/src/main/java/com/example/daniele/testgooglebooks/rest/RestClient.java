@@ -43,7 +43,7 @@ public class RestClient {
 
     public interface GoogleBooksInterface {
 
-        @GET("/volume/{volumeId}")
+        @GET("volumes/{volumeId}")
         Call<Volume> getVolumeById(@Path("volumeId") String volumeId);
 
         @GET("volumes")

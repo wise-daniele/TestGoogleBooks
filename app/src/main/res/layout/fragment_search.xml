@@ -21,30 +21,35 @@
         android:id="@+id/edit_text_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/text_title"
         android:layout_margin="8dp"/>
 
     <EditText
         android:id="@+id/edit_text_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/text_author"
         android:layout_margin="8dp"/>
 
     <EditText
         android:id="@+id/edit_text_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/text_subject"
         android:layout_margin="8dp"/>
 
     <EditText
         android:id="@+id/edit_text_publisher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/text_publisher"
         android:layout_margin="8dp"/>
 
     <EditText
         android:id="@+id/edit_text_isbn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/text_isbn"
         android:layout_margin="8dp"/>
 
     <Button
