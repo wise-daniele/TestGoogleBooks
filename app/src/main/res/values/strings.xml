@@ -8,8 +8,9 @@
     <!-- Search Fragment -->
     <string name="text_title">Title</string>
     <string name="text_author">Author</string>
-    <string name="text_publisher">Publisher</string>
     <string name="text_subject">Subject</string>
+    <string name="text_publisher">Publisher</string>
     <string name="text_isbn">ISBN</string>
+    <string name="text_input_error">Type at least something</string>
     
 </resources>

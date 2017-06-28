@@ -91,8 +91,11 @@ public class MainController {
         return fragmentTransaction.commit();
     }
 
-    public void onSearchTapped(String title, String author, String publisher, String subject, String isbn){
+    public boolean onSearchTapped(String title, String author, String subject, String publisher, String isbn){
         String searchQuery = getSearchQuery(title, author, publisher, subject, isbn);
+        if(searchQuery == null){
+            return false;
+        }
         RestClient.GoogleBooksInterface service = RestClient.getInstance().getClient().create(RestClient.GoogleBooksInterface.class);
         Call<VolumesResponse> call = service.getVolumes(searchQuery.toString());
         call.enqueue(new Callback<VolumesResponse>() {
@@ -109,6 +112,7 @@ public class MainController {
             }
 
         });
+        return true;
     }
 
     public void onListItemTapped(String itemId){
@@ -171,6 +175,9 @@ public class MainController {
             }
             searchQuery.append(query);
             firstAdded = true;
+        }
+        if(!firstAdded){
+            return null;
         }
         return searchQuery.toString();
     }

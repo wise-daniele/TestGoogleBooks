@@ -3,9 +3,12 @@ package com.example.daniele.testgooglebooks.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,16 +35,18 @@ public class SearchFragment extends Fragment {
     }
 
     private FragmentListener mListener;
+    @BindView(R.id.text_input_layout_title)
+    TextInputLayout mTextInputLayoutTitle;
     @BindView(R.id.edit_text_title)
-    TextView mTextTitle;
+    TextInputEditText mTextTitle;
     @BindView(R.id.edit_text_author)
-    TextView mTextAuthor;
-    @BindView(R.id.edit_text_publisher)
-    TextView mTextPublisher;
+    TextInputEditText mTextAuthor;
     @BindView(R.id.edit_text_subject)
-    TextView mTextSubject;
+    TextInputEditText mTextSubject;
+    @BindView(R.id.edit_text_publisher)
+    TextInputEditText mTextPublisher;
     @BindView(R.id.edit_text_isbn)
-    TextView mTextIsbn;
+    TextInputEditText mTextIsbn;
     @BindView(R.id.button_search)
     Button mButtonSearch;
     private Unbinder mUnbinder;
@@ -52,16 +57,27 @@ public class SearchFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
 
+        mTextTitle.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mTextInputLayoutTitle.setError(null);
+                return false;
+            }
+        });
+
         mButtonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onSearchTapped(
+                boolean inputValidation = mListener.onSearchTapped(
                         mTextTitle.getText().toString(),
                         mTextAuthor.getText().toString(),
                         mTextSubject.getText().toString(),
                         mTextPublisher.getText().toString(),
                         mTextIsbn.getText().toString()
                 );
+                if(!inputValidation){
+                    mTextInputLayoutTitle.setError(getString(R.string.text_input_error));
+                }
             }
         });
         return rootView;
@@ -92,7 +108,7 @@ public class SearchFragment extends Fragment {
 
     public interface FragmentListener{
 
-        void onSearchTapped(
+        boolean onSearchTapped(
                 String title,
                 String author,
                 String subject,
