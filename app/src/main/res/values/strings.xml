@@ -12,5 +12,9 @@
     <string name="text_publisher">Publisher</string>
     <string name="text_isbn">ISBN</string>
     <string name="text_input_error">Type at least something</string>
+
+    <!-- Detail Fragment -->
+    <string name="text_detail_publisher">Publisher:</string>
+    <string name="text_detail_preview">Preview</string>
     
 </resources>

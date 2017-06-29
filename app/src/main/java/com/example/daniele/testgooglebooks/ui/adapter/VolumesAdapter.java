@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.daniele.testgooglebooks.R;
 import com.example.daniele.testgooglebooks.model.Volume;
 import com.example.daniele.testgooglebooks.model.VolumeInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class VolumesAdapter extends RecyclerView.Adapter<VolumesAdapter.VolumeVi
         TextView mBookAuthor;
         @BindView(R.id.text_book_publisher)
         TextView mBookPublisher;
+        @BindView(R.id.image_book)
+        ImageView mImageBook;
 
         public VolumeViewHolder(View view) {
             super(view);
@@ -71,13 +75,18 @@ public class VolumesAdapter extends RecyclerView.Adapter<VolumesAdapter.VolumeVi
             holder.mBookTitle.setText(title);
             holder.mBookAuthor.setText(textAuthor);
             holder.mBookPublisher.setText(publisher);
-
             holder.myView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mListener.onItemClick(volume.getId());
                 }
             });
+            VolumeInfo.ImageLinks imageLinks = volume.getVolumeInfo().getImageLinks();
+            if(imageLinks != null){
+                Picasso.with(mContext)
+                        .load(imageLinks.getThumbnail())
+                        .into(holder.mImageBook);
+            }
         }
     }
 

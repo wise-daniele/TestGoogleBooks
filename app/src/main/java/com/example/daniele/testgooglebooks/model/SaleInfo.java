@@ -17,4 +17,19 @@ public class SaleInfo {
     @SerializedName("buyLink")
     private String buyLink;
 
+    public String getCountry() {
+        return country;
+    }
+
+    public String getSaleability() {
+        return saleability;
+    }
+
+    public boolean isEbook() {
+        return isEbook;
+    }
+
+    public String getBuyLink() {
+        return buyLink;
+    }
 }

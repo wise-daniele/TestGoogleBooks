@@ -19,9 +19,9 @@ public class AccessInfo {
     @SerializedName("textToSpeechPermission")
     private String textToSpeechPermission;
     @SerializedName("epub")
-    private Epub epub;
+    private EpubOrPdf epub;
     @SerializedName("pdf")
-    private Pdf pdf;
+    private EpubOrPdf pdf;
     @SerializedName("webReaderLink")
     private String webReaderLink;
     @SerializedName("accessViewStatus")
@@ -29,21 +29,59 @@ public class AccessInfo {
     @SerializedName("quoteSharingAllowed")
     private boolean quoteSharingAllowed;
 
-    public class Epub {
-
-        @SerializedName("isAvailable")
-        private boolean isAvailable;
-        @SerializedName("downloadLink")
-        private String downloadLink;
-
+    public String getCountry() {
+        return country;
     }
 
-    public class Pdf {
+    public String getViewability() {
+        return viewability;
+    }
+
+    public boolean isEmbeddable() {
+        return embeddable;
+    }
+
+    public boolean isPublicDomain() {
+        return publicDomain;
+    }
+
+    public String getTextToSpeechPermission() {
+        return textToSpeechPermission;
+    }
+
+    public EpubOrPdf getEpub() {
+        return epub;
+    }
+
+    public EpubOrPdf getPdf() {
+        return pdf;
+    }
+
+    public String getWebReaderLink() {
+        return webReaderLink;
+    }
+
+    public String getAccessViewStatus() {
+        return accessViewStatus;
+    }
+
+    public boolean isQuoteSharingAllowed() {
+        return quoteSharingAllowed;
+    }
+
+    public class EpubOrPdf {
 
         @SerializedName("isAvailable")
         private boolean isAvailable;
         @SerializedName("downloadLink")
         private String downloadLink;
 
+        public boolean isAvailable() {
+            return isAvailable;
+        }
+
+        public String getDownloadLink() {
+            return downloadLink;
+        }
     }
 }

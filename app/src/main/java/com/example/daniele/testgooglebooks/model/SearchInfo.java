@@ -10,4 +10,8 @@ public class SearchInfo {
 
     @SerializedName("textSnippet")
     private String textSnippet;
+
+    public String getTextSnippet() {
+        return textSnippet;
+    }
 }

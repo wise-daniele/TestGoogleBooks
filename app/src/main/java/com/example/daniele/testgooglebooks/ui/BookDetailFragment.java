@@ -30,10 +30,12 @@ public class BookDetailFragment extends Fragment {
         return fragment;
     }
 
+    /*
     @BindView(R.id.text_title)
     TextView mBookTitle;
     @BindView(R.id.text_author)
     TextView mBookAuthor;
+    */
     private Volume mVolume;
 
     private Unbinder mUnbinder;
@@ -44,7 +46,7 @@ public class BookDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_book_detail, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
 
-        mBookTitle.setText(mVolume.getVolumeInfo().getTitle());
+        //mBookTitle.setText(mVolume.getVolumeInfo().getTitle());
 
         return rootView;
     }

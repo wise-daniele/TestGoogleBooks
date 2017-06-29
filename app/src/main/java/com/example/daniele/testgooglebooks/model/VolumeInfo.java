@@ -90,6 +90,30 @@ public class VolumeInfo {
         private String large;
         @SerializedName("extraLarge")
         private String extraLarge;
+
+        public String getSmallThumbnail() {
+            return smallThumbnail;
+        }
+
+        public String getThumbnail() {
+            return thumbnail;
+        }
+
+        public String getSmall() {
+            return small;
+        }
+
+        public String getMedium() {
+            return medium;
+        }
+
+        public String getLarge() {
+            return large;
+        }
+
+        public String getExtraLarge() {
+            return extraLarge;
+        }
     }
 
     public String getTitle() {
