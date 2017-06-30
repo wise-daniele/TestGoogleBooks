@@ -21,7 +21,6 @@ import com.squareup.picasso.Picasso;
 public class BookDetailController {
 
     private Context mContext;
-    private String mPreviewUrl;
 
     public BookDetailController(Context context){
         mContext = context;
@@ -42,7 +41,6 @@ public class BookDetailController {
         TextView textLanguage = (TextView) rootView.findViewById(R.id.text_language_detail);
         TextView textPreview = (TextView) rootView.findViewById(R.id.text_preview);
         textPreview.setPaintFlags(textPreview.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        mPreviewUrl = volumeInfo.getPreviewLink();
         textPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
