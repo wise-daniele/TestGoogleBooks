@@ -8,18 +8,42 @@
     android:layout_gravity="center_horizontal">
 
     <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/text_detail_author"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/text_author"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
         android:layout_margin="16dp"
-        android:background="@color/colorPrimary"/>
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/text_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginRight="16dp"
+            android:text="@string/text_detail_author"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/text_author_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginBottom="8dp"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -44,42 +68,79 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:textSize="18sp"
-            android:layout_marginLeft="16dp"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
-    <View
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@color/colorPrimary"
-        android:visibility="gone"/>
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/text_published"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginRight="16dp"
+            android:text="@string/text_detail_published_date"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/text_published_date_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/text_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginRight="16dp"
+            android:text="@string/text_detail_language"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/text_language_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:gravity="center_horizontal"
-        android:visibility="gone"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_margin="16dp"
-        android:background="@color/colorPrimary"/>
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/text_preview"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:gravity="center_horizontal"
-        android:visibility="gone"/>
+        android:textSize="22sp"
+        android:textColor="@android:color/holo_blue_bright"
+        android:text="@string/text_detail_preview"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

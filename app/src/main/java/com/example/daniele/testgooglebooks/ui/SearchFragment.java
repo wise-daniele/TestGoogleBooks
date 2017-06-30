@@ -6,16 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.daniele.testgooglebooks.R;
-import com.example.daniele.testgooglebooks.controller.MainController;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,8 +27,7 @@ public class SearchFragment extends Fragment {
     public static final String FRAGMENT_TAG = "fragment_search";
 
     public static SearchFragment newInstance() {
-        SearchFragment fragment = new SearchFragment();
-        return fragment;
+        return new SearchFragment();
     }
 
     private FragmentListener mListener;
@@ -106,7 +102,7 @@ public class SearchFragment extends Fragment {
         mListener = null;
     }
 
-    public interface FragmentListener{
+    interface FragmentListener{
 
         boolean onSearchTapped(
                 String title,

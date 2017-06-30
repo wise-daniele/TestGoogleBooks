@@ -68,8 +68,10 @@ public class VolumesAdapter extends RecyclerView.Adapter<VolumesAdapter.VolumeVi
             String title = volumeInfo.getTitle();
             String[] authors = volumeInfo.getAuthors();
             String textAuthor = "";
-            for(int i = 0; i < authors.length; i++){
-                textAuthor = textAuthor + authors[i] + " ";
+            if(authors!=null){
+                for(String aut : authors){
+                    textAuthor = textAuthor + aut + " ";
+                }
             }
             String publisher = volumeInfo.getPublisher();
             holder.mBookTitle.setText(title);

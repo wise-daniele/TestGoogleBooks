@@ -32,8 +32,7 @@ public class BooksListFragment extends Fragment {
     public static final String LOG_TAG = BooksListFragment.class.getSimpleName();
 
     public static BooksListFragment newInstance() {
-        BooksListFragment fragment = new BooksListFragment();
-        return fragment;
+        return new BooksListFragment();
     }
 
     @BindView(R.id.volumes_list_view)
@@ -93,8 +92,8 @@ public class BooksListFragment extends Fragment {
         mListener = null;
     }
 
-    public interface VolumeListener {
+    interface VolumeListener {
 
-        public void onItemSelected(String volumeId);
+        void onItemSelected(String volumeId);
     }
 }

@@ -2,14 +2,16 @@ package com.example.daniele.testgooglebooks.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.daniele.testgooglebooks.R;
+import com.example.daniele.testgooglebooks.controller.BookDetailController;
 import com.example.daniele.testgooglebooks.model.Volume;
 
 import butterknife.BindView;
@@ -30,24 +32,33 @@ public class BookDetailFragment extends Fragment {
         return fragment;
     }
 
-    /*
+    @BindView(R.id.collapsing_toolbar)
+    CollapsingToolbarLayout mToolbar;
+    @BindView(R.id.image_book)
+    ImageView mImageBook;
+    @BindView(R.id.text_image_not_available)
+    TextView mTextNotAvailable;
     @BindView(R.id.text_title)
-    TextView mBookTitle;
-    @BindView(R.id.text_author)
-    TextView mBookAuthor;
-    */
+    TextView mTextTitle;
+    @BindView(R.id.text_author_detail)
+    TextView mTextAuthor;
+    @BindView(R.id.text_publisher)
+    TextView mTextPub;
+    @BindView(R.id.text_publisher_detail)
+    TextView mTextPublisher;
+    @BindView(R.id.text_description)
+    TextView mTextDescription;
     private Volume mVolume;
-
     private Unbinder mUnbinder;
+    private BookDetailController mDetailController;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_book_detail, container, false);
         mUnbinder = ButterKnife.bind(this, rootView);
-
-        //mBookTitle.setText(mVolume.getVolumeInfo().getTitle());
-
+        mDetailController = new BookDetailController(getActivity());
+        mDetailController.inflateViews(rootView, mVolume);
         return rootView;
     }
 
